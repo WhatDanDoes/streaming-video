@@ -1,0 +1,36 @@
+{
+  "name": "streaming-video",
+  "version": "0.0.0",
+  "description": "Documents the setup of a node-based streaming media server with common open source tools",
+  "main": "app.js",
+  "scripts": {
+    "test": "NODE_ENV=test npx jasmine",
+    "start": "node ./bin/www"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WhatDanDoes/streaming-video.git"
+  },
+  "keywords": [
+    "video",
+    "stream",
+    "ubuntu"
+  ],
+  "author": "Daniel Bidulock",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/WhatDanDoes/streaming-video/issues"
+  },
+  "homepage": "https://github.com/WhatDanDoes/streaming-video#readme",
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "ejs": "~2.6.1",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1"
+  },
+  "devDependencies": {
+    "jasmine": "^3.6.2"
+  }
+}
