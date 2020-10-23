@@ -2,24 +2,23 @@
 # docker-compose.yml
 version: "3"
 services:
-#  app:
-#    build: ./site
-#    volumes:
-#      - ./silid-server:/app/
-#      - /app/node_modules
-#      - /app/build
-#    environment:
-#      - VIRTUAL_HOST=id.whatdandoes.info
-#      - LETSENCRYPT_HOST=id.whatdandoes.info
-#      - LETSENCRYPT_EMAIL=daniel@example.com
-#      - PORT=3001
+  site:
+   build: ./site
+    volumes:
+      - ./site:/home/node
+      - /home/node/node_modules
+    environment:
+      - VIRTUAL_HOST=0yy.ca
+      - LETSENCRYPT_HOST=0yy.ca
+      - LETSENCRYPT_EMAIL=daniel@example.com
+      - PORT=3001
   nms:
     build: ./nms
     ports:
       - "1935:1935"
     environment:
-      - VIRTUAL_HOST=0yy.ca
-      - LETSENCRYPT_HOST=0yy.ca
+      - VIRTUAL_HOST=admin.0yy.ca
+      - LETSENCRYPT_HOST=admin.0yy.ca
       - LETSENCRYPT_EMAIL=daniel@capitolhill.ca
       - VIRTUAL_PORT=8000
     volumes:
