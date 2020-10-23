@@ -3,7 +3,7 @@
 version: "3"
 services:
   site:
-   build: ./site
+    build: ./site
     volumes:
       - ./site:/home/node
       - /home/node/node_modules
