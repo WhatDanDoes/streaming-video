@@ -24,6 +24,7 @@ From the project directory:
 
 ```
 cd nms
+cp .env.example .env
 npm install
 ```
 
@@ -45,11 +46,23 @@ From the project directory:
 
 ```
 cd site
+cp .env.example .env
 npm install
 ```
 
-# Test
+### Test
 
+Run all:
+
+```
+npm test
+```
+
+Run one test file:
+
+```
+NODE_ENV=test npx jasmine spec/landingPageSpec.js
+```
 
 # Development
 
