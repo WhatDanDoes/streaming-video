@@ -17,8 +17,8 @@ services:
     ports:
       - "1935:1935"
     environment:
-      - VIRTUAL_HOST=admin.0yy.ca
-      - LETSENCRYPT_HOST=admin.0yy.ca
+      - VIRTUAL_HOST=stream.0yy.ca
+      - LETSENCRYPT_HOST=stream.0yy.ca
       - LETSENCRYPT_EMAIL=daniel@capitolhill.ca
       - VIRTUAL_PORT=8000
     volumes:
