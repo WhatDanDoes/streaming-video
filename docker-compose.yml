@@ -3,11 +3,7 @@
 version: "3"
 services:
 #  app:
-#    build: .
-#    depends_on:
-#      - postgres
-#    ports:
-#      - "3001:3001"
+#    build: ./site
 #    volumes:
 #      - ./silid-server:/app/
 #      - /app/node_modules
@@ -15,25 +11,21 @@ services:
 #    environment:
 #      - VIRTUAL_HOST=id.whatdandoes.info
 #      - LETSENCRYPT_HOST=id.whatdandoes.info
-#      - LETSENCRYPT_EMAIL=daniel@capitolhill.ca
-#      - DATABASE_URL=postgres://user:pass@postgres:5432/db
-#      - NODE_ENV=staging
+#      - LETSENCRYPT_EMAIL=daniel@example.com
 #      - PORT=3001
   nms:
     build: ./nms
     ports:
       - "1935:1935"
-      - "8000:8000"
-#    environment:
-#      POSTGRES_USER: user
-#      POSTGRES_PASSWORD: pass
-#      POSTGRES_DB: silid_staging
-#    volumes:
-#      - silid_postgres_data:/var/lib/postgresql/data
-#volumes:
-#  silid_postgres_data:
-#networks:
-#  default:
-#    external:
-#      name: nginx-proxy
-
+    environment:
+      - VIRTUAL_HOST=0yy.ca
+      - LETSENCRYPT_HOST=0yy.ca
+      - LETSENCRYPT_EMAIL=daniel@capitolhill.ca
+      - VIRTUAL_PORT=8000
+    volumes:
+      - ./nms:/home/node
+      - /home/node/node_modules
+networks:
+  default:
+    external:
+      name: nginx-proxy
