@@ -22,16 +22,13 @@
       var video = document.getElementById('viewer');
 
       function toggleMute() {
-        console.log('TOGGGLIN');
-        console.log('before', video.muted);
         video.muted = !video.muted;
-        console.log('after', video.muted);
       }
 
       if (flvjs.isSupported()) {
         var flvPlayer = flvjs.createPlayer({
             type: 'flv',
-            url: 'http://192.168.2.2:8000/live/trbb.flv'
+            url: '<%= process.env.STREAM_URL %>'
         });
         flvPlayer.attachMediaElement(video);
         flvPlayer.load();
