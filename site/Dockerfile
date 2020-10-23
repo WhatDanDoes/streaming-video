@@ -1,40 +1,14 @@
 FROM node:10.20.1
 
-ARG NODE_ENV
-ARG PORT=3001
+WORKDIR /usr/src/app
 
-ENV NODE_ENV=$NODE_ENV
-ENV PORT=$PORT
+COPY package*.json ./
 
-#
-# Build client app
-#
-WORKDIR /srv/app/client
+RUN npm i
 
-COPY ./identity-react/package.json .
-COPY ./identity-react/package-lock.json .
-COPY ./identity-react .
+COPY . .
 
-RUN npm install --production
-RUN npm run build
+EXPOSE 3001
 
-#
-# Start server app
-#
-WORKDIR /app
-
-COPY ./silid-server/package.json .
-COPY ./silid-server/package-lock.json .
-
-RUN npm install --production
-
-COPY ./silid-server .
-
-
-# Copy client build
-RUN mkdir -p /app/build && cp -R /srv/app/client/build/* /app/build
-
-EXPOSE $PORT
-
-CMD NODE_ENV=$NODE_ENV npm start
+CMD ["node","app.js"]
 
