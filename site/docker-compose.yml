@@ -1,0 +1,11 @@
+# 2019-10-24 Swiped from here: https://codewithhugo.com/node-postgres-express-docker-compose/
+# docker-compose.yml
+version: "3"
+services:
+  site:
+    build: .
+    ports:
+      - "3001:3001"
+    volumes:
+      - .:/home/node
+      - /home/node/node_modules
