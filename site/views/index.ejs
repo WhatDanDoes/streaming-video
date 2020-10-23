@@ -3,11 +3,40 @@
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="/flv/flv.min.js"></script>
   </head>
   <body>
     <header>
       <h1><%= title %></h1>
     </header>
-    <p>Welcome to <%= title %></p>
+    <video
+      id="viewer"
+      autoplay="true"
+      muted="true"
+      poster="/images/waiting.svg"
+      onclick="toggleMute()"
+    >
+      Your browser does not support the video tag
+    </video>
+    <script>
+      var video = document.getElementById('viewer');
+
+      function toggleMute() {
+        console.log('TOGGGLIN');
+        console.log('before', video.muted);
+        video.muted = !video.muted;
+        console.log('after', video.muted);
+      }
+
+      if (flvjs.isSupported()) {
+        var flvPlayer = flvjs.createPlayer({
+            type: 'flv',
+            url: 'http://192.168.2.2:8000/live/trbb.flv'
+        });
+        flvPlayer.attachMediaElement(video);
+        flvPlayer.load();
+        flvPlayer.play();
+      }
+    </script>
   </body>
 </html>

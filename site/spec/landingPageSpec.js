@@ -22,15 +22,40 @@ describe('landing page', () => {
     });
   });
 
-  it('sets up the flv media player', done => {
+  it('sets up the flv media player elements', done => {
     browser.visit('/', (err) => {
       if (err) return done.fail(err);
       browser.assert.success();
       browser.assert.element('head script[src="/flv/flv.min.js"]');
-      browser.assert.element('video');
+      browser.assert.element('video#viewer[muted="true"][autoplay="true"][poster="/images/waiting.svg"]');
       browser.assert.element('body script:last-child');
-      browser.assert.evaluate('flvjs.isSupported()');
+      // I guess zombie doesn't support the video component...
+      // This does prove, however, that the flv script is loaded
+      browser.assert.evaluate('flvjs.isSupported()', undefined);
       done();
+    });
+  });
+
+  it('toggles muted setting on viewer', done => {
+    browser.visit('/', (err) => {
+      if (err) return done.fail(err);
+      browser.assert.success();
+      browser.assert.element('video#viewer[muted="true"]');
+      browser.assert.elements('video#viewer[muted="false"]', 0);
+
+      browser.click('video#viewer', (err) => {
+        if (err) return done.fail(err);
+        browser.assert.elements('video#viewer[muted="true"]', 0);
+        browser.assert.element('video#viewer[muted="false"]');
+
+        browser.click('video#viewer', (err) => {
+          if (err) return done.fail(err);
+          browser.assert.element('video#viewer[muted="true"]');
+          browser.assert.elements('video#viewer[muted="false"]', 0);
+
+          done();
+        });
+      });
     });
   });
 });
