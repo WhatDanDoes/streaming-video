@@ -8,5 +8,5 @@ services:
       - "1935:1935"
       - "8000:8000"
     volumes:
-      - ./nms:/home/node
+      - .:/home/node
       - /home/node/node_modules
