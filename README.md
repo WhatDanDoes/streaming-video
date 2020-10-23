@@ -80,8 +80,44 @@ docker-compose up --build -d
 
 # Ubuntu Production Software
 
+To be installed on your source machine.
+
 ## OBS
 
-https://obsproject.com/
+Installation adapted from: https://obsproject.com/
 
+
+Install dependencies:
+
+```
+sudo apt install mesa-utils ffmpeg
+```
+
+
+
+Make sure OpenGL is installed:
+
+```
+glxinfo | grep "OpenGL"
+```
+
+If not, follow the recommended way to install.
+
+Add OBS repository and install:
+
+```
+sudo add-apt-repository ppa:obsproject/obs-studio
+sudo apt update
+sudo apt install obs-studio
+```
+
+## JACK and voice changers
+
+From https://digitalsuperpowers.com/blog/2019-03-16-voice-changers.html
+
+```
+sudo apt-get install qjackctl jack-rack tap-plugins pulseaudio-module-jack
+qjackctl
+jack-rack
+```
 
