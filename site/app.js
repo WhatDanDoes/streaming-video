@@ -20,6 +20,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/flv', express.static(__dirname + '/node_modules/flv.js/dist/'));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
