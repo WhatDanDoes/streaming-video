@@ -12,20 +12,19 @@
     <video
       id="viewer"
       autoplay="true"
-      muted="true"
+      muted
       poster="/images/waiting.svg"
-      onclick="toggleMute()"
+      onclick="toggleMute(this)"
     >
       Your browser does not support the video tag
     </video>
     <script>
-      var video = document.getElementById('viewer');
-
-      function toggleMute() {
-        video.muted = !video.muted;
+      function toggleMute(v) {
+        v.muted = !v.muted;
       }
 
       if (flvjs.isSupported()) {
+        var video = document.getElementById('viewer');
         var flvPlayer = flvjs.createPlayer({
             type: 'flv',
             url: '<%= process.env.STREAM_URL %>'

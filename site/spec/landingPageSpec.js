@@ -27,7 +27,7 @@ describe('landing page', () => {
       if (err) return done.fail(err);
       browser.assert.success();
       browser.assert.element('head script[src="/flv/flv.min.js"]');
-      browser.assert.element('video#viewer[muted="true"][autoplay="true"][poster="/images/waiting.svg"]');
+      browser.assert.element('video#viewer[autoplay="true"][poster="/images/waiting.svg"]');
       browser.assert.element('body script:last-child');
       // I guess zombie doesn't support the video component...
       // This does prove, however, that the flv script is loaded
@@ -40,18 +40,15 @@ describe('landing page', () => {
     browser.visit('/', (err) => {
       if (err) return done.fail(err);
       browser.assert.success();
-      browser.assert.element('video#viewer[muted="true"]');
-      browser.assert.elements('video#viewer[muted="false"]', 0);
+      expect(browser.document.getElementById('viewer').muted).toBe(false);
 
       browser.click('video#viewer', (err) => {
         if (err) return done.fail(err);
-        browser.assert.elements('video#viewer[muted="true"]', 0);
-        browser.assert.element('video#viewer[muted="false"]');
+        expect(browser.document.getElementById('viewer').muted).toBe(true);
 
         browser.click('video#viewer', (err) => {
           if (err) return done.fail(err);
-          browser.assert.element('video#viewer[muted="true"]');
-          browser.assert.elements('video#viewer[muted="false"]', 0);
+          expect(browser.document.getElementById('viewer').muted).toBe(false);
 
           done();
         });
