@@ -93,8 +93,6 @@ Install dependencies:
 sudo apt install mesa-utils ffmpeg
 ```
 
-
-
 Make sure OpenGL is installed:
 
 ```
@@ -109,6 +107,21 @@ Add OBS repository and install:
 sudo add-apt-repository ppa:obsproject/obs-studio
 sudo apt update
 sudo apt install obs-studio
+```
+
+### Streaming address
+
+The address to which you stream depends on the endpoints you specify. In _Settings > Stream_:
+
+- Service: _Custom_
+- Server: _rtmp://192.168.2.1:1935/live_
+- Stream Key: _stream_
+
+With these settings you will configure `site/.env` to look like this:
+
+```
+TITLE=streaming-video
+STREAM_URL=http://192.168.2.1:8000/live/stream.flv
 ```
 
 ## JACK and voice changers
