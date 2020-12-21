@@ -77,10 +77,9 @@ npm install --production
 docker-compose up --build -d
 ```
 
-
 # Ubuntu Production Software
 
-To be installed on your source machine.
+The following section is a mess. I've been documenting the various production software I've tried. As it turns out, video with OBS is quite easy. Real-time audio production is much trickier. Apart from the OBS installation, most of the rest is just helping me keep track of all the junk I've installed on my machine.
 
 ## OBS
 
@@ -132,5 +131,65 @@ From https://digitalsuperpowers.com/blog/2019-03-16-voice-changers.html
 sudo apt-get install qjackctl jack-rack tap-plugins pulseaudio-module-jack
 qjackctl
 jack-rack
+```
+
+## VLC
+
+```
+sudo apt install vlc-bin
+sudo apt install vlc-plugin-access-extra libbluray-bdj libdvdcss2
+```
+
+# Audio Mixing Experimentation
+
+I've already installed a bunch of software willy nilly. I guess I'm keeping track now.
+
+- Jack
+- Pulseaudio
+
+```
+pavucontrol
+sudo apt install paprefs
+paprefs
+```
+
+# Equalizer
+
+Info found at https://askubuntu.com/questions/72679/is-there-any-sound-enhancers-equalizer and https://askubuntu.com/questions/980876/how-do-i-start-pulseaudio-equalizer/982556#982556
+
+```
+sudo apt-get install pulseaudio-equalizer
+qpaeq
+pactl load-module module-equalizer-sink
+pactl load-module module-dbus-protocol
+```
+
+```
+sudo apt install jackeq
+jackeq
+```
+
+```
+sudo apt install jamin
+```
+
+```
+sudo add-apt-repository ppa:mikhailnov/pulseeffects -y
+sudo apt update
+sudo apt install pulseeffects pulseaudio --install-recommends
+```
+
+What is this? https://github.com/masmu/pulseaudio-dlna
+
+It's supposed to be easy to use.
+
+# CAVA
+
+Visualizer
+
+```
+sudo add-apt-repository ppa:tehtotalpwnage/ppa
+sudo apt update
+sudo apt install cava
 ```
 
