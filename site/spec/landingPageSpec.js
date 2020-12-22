@@ -67,7 +67,7 @@ describe('landing page', () => {
         browser.assert.element('#muted-icon');
 
         const target = browser.querySelector('video#viewer');
-        browser.fire(target, 'onloadstart', () => {
+        browser.fire(target, 'playing', () => {
           done();
         });
       });

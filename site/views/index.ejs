@@ -46,7 +46,7 @@
         flvPlayer.play();
       }
 
-      video.addEventListener('onloadstart', () => {
+      video.addEventListener('playing', () => {
         isStreaming = true;
         mutedIcon.style.display = 'block';
       });
