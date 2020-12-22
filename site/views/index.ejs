@@ -10,22 +10,33 @@
     <header>
       <h1><%= title %></h1>
     </header>
+    <img id="muted-icon" src="/images/muted.svg" onclick="toggleMute()">
     <video
+      muted
       id="viewer"
       autoplay="true"
-      muted
       poster="/images/waiting.svg"
-      onclick="toggleMute(this)"
+      onclick="toggleMute()"
     >
       Your browser does not support the video tag
     </video>
     <script>
-      function toggleMute(v) {
-        v.muted = !v.muted;
+      var isStreaming = false;
+
+      var video = document.getElementById('viewer');
+      video.muted = true;
+
+      var mutedIcon = document.getElementById('muted-icon');
+      mutedIcon.style.display = 'none';
+
+      function toggleMute() {
+        if (isStreaming) {
+          video.muted = !video.muted;
+          mutedIcon.style.display = video.muted ? 'block' : 'none';
+        }
       }
 
       if (flvjs.isSupported()) {
-        var video = document.getElementById('viewer');
         var flvPlayer = flvjs.createPlayer({
             type: 'flv',
             url: '<%= process.env.STREAM_URL %>'
@@ -34,6 +45,11 @@
         flvPlayer.load();
         flvPlayer.play();
       }
+
+      video.addEventListener('onloadstart', () => {
+        isStreaming = true;
+        mutedIcon.style.display = 'block';
+      });
     </script>
   </body>
 </html>
